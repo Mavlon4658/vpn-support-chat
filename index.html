@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, interactive-widget=resizes-content">
+    <title>Safe DNS</title>
+    <!-- Bootstrap css -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css">
+    <!-- Bootstrap css -->
+    <!-- fonts -->
+    <link rel="stylesheet" href="./assets/fonts/font.css">
+    <!-- fonts -->
+    <!-- css link -->
+    <link rel="stylesheet" href="./assets/scss/style.css">
+    <!-- css link -->
+</head>
+<body>
+    <div class="wrapper screen" data-screen>
+
+        <main class="screen__body">
+            <!-- Главная -->
+            <section class="home">
+                <div class="home__brand">
+                    <span class="logo"></span>
+                    <h1 class="home__name">Safe DNS</h1>
+                </div>
+                <div class="home__center">
+                    <button type="button" class="power" aria-label="Включить защиту" aria-pressed="false"><span class="power__icon"></span></button>
+                    <p class="home__status">Неактивен</p>
+                </div>
+            </section>
+            <!-- Главная end -->
+        </main>
+
+        <!-- Сервер -->
+        <button type="button" class="server">
+            <span class="server__flag">🇩🇪</span>
+            <span class="server__name">Сервер · Германия</span>
+            <span class="icon icon--arrow-right icon--grey"></span>
+        </button>
+        <!-- Сервер end -->
+
+        <!-- Footer -->
+        <footer class="tabbar">
+            <nav class="tabbar__list" aria-label="Основная навигация">
+                <a href="./index.html" class="tabbar__link is-active" aria-current="page">
+                    <span class="icon icon--home"></span>
+                    <span>Главная</span>
+                </a>
+                <a href="#" class="tabbar__link">
+                    <span class="icon icon--all"></span>
+                    <span>Приложения</span>
+                </a>
+                <a href="./chat.html#unread" class="tabbar__link is-unread">
+                    <span class="icon icon--chat-alt"></span>
+                    <span>Поддержка</span>
+                </a>
+                <a href="#" class="tabbar__link">
+                    <span class="icon icon--settings-tabbar"></span>
+                    <span>Настройки</span>
+                </a>
+            </nav>
+        </footer>
+        <!-- Footer end -->
+
+    </div>
+
+    <!-- js file -->
+    <script src="./assets/js/main.js" defer></script>
+    <!-- js file -->
+</body>
+</html>

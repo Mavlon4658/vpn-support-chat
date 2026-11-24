@@ -1,0 +1,159 @@
+// Fonts
+$font-SF-Pro-Text: "SF Pro Text", sans-serif;
+$font-SF-Pro-Display: "SF Pro Display", sans-serif;
+$font-SF-Pro: "SF Pro", sans-serif;
+// Fonts end
+
+// Colors
+$color-light-bg: var(--color-light-bg);
+$color-black: var(--color-black);
+$color-main: var(--color-main);
+$color-white: var(--color-white);
+$color-divider: var(--color-divider);
+$color-grey: var(--color-grey);
+$color-green: var(--color-green);
+$color-fade: var(--color-fade);
+$color-link: var(--color-link);
+$color-main-touch: var(--color-main-touch);
+$color-red: var(--color-red);
+$color-red-dark: var(--color-red-dark);
+$color-chat-user-bg: var(--color-chat-user-bg);
+$color-chat-user-border: var(--color-chat-user-border);
+$color-reply-bg: var(--color-reply-bg);
+$color-date-text: var(--color-date-text);
+$color-loader-bg: var(--color-loader-bg);
+$color-gold: var(--color-gold);
+$color-touch-dark: var(--color-touch-dark);
+$color-violet: var(--color-violet);
+$color-violet-touch: var(--color-violet-touch);
+$color-apple-blue: var(--color-apple-blue);
+$color-apple-fade: var(--color-apple-fade);
+$color-apple-sheet: var(--color-apple-sheet);
+$color-apple-cancel: var(--color-apple-cancel);
+$color-apple-label: var(--color-apple-label);
+$color-apple-line: var(--color-apple-line);
+$color-static-white: #fff;
+$color-static-black: #000;
+// Colors end
+
+@mixin media($value) {
+    @if ($value < 0) {
+        @media screen and (min-width: calc($value * (-1)) + 'px') {
+            @content;
+        }
+
+    } @else {
+        @media screen and (max-width: $value + 'px') {
+            @content;
+        }
+    }
+}
+
+// Themes
+@mixin theme-light {
+    --color-light-bg: #f3f4f6;
+    --color-black: #171a21;
+    --color-main: #3e8e8a;
+    --color-white: #fff;
+    --color-divider: #e5e7eb;
+    --color-grey: #a7a7a7;
+    --color-green: #1ccf25;
+    --color-fade: rgba(28, 17, 10, 0.3);
+    --color-link: #0040ff;
+    --color-main-touch: #2f6f6b;
+    --color-red: #ff7e81;
+    --color-red-dark: #dd6e70;
+    --color-chat-user-bg: #e5f5f4;
+    --color-chat-user-border: rgba(107, 168, 164, 0.6);
+    --color-reply-bg: #d2efed;
+    --color-date-text: #fff;
+    --color-loader-bg: rgba(26, 27, 37, 0.8);
+    --color-gold: #ffae00;
+    --color-touch-dark: #353943;
+    --color-violet: #aa75ff;
+    --color-violet-touch: #8c57e1;
+    --color-apple-blue: #007aff;
+    --color-apple-fade: rgba(0, 0, 0, 0.4);
+    --color-apple-sheet: rgba(245, 245, 245, 0.7);
+    --color-apple-cancel: #fff;
+    --color-apple-label: rgba(60, 60, 67, 0.6);
+    --color-apple-line: rgba(60, 60, 67, 0.36);
+}
+
+@mixin theme-dark {
+    --color-light-bg: #0f1115;
+    --color-black: #f5f7fa;
+    --color-main: #6acbc5;
+    --color-white: #20242c;
+    --color-divider: #2f3237;
+    --color-grey: #8b93a1;
+    --color-fade: rgba(96, 96, 96, 0.6);
+    --color-red: #ff8f92;
+    --color-chat-user-bg: #173331;
+    --color-chat-user-border: rgba(79, 141, 136, 0.6);
+    --color-reply-bg: #005d57;
+    --color-date-text: #f5f7fa;
+    --color-loader-bg: rgba(32, 36, 44, 0.8);
+    --color-apple-blue: #0a84ff;
+    --color-apple-fade: rgba(96, 96, 96, 0.6);
+    --color-apple-sheet: rgba(24, 24, 24, 0.7);
+    --color-apple-cancel: #1c1c1e;
+    --color-apple-label: rgba(235, 235, 245, 0.6);
+    --color-apple-line: rgba(84, 84, 88, 0.65);
+}
+// Themes end
+
+// Text
+@mixin paragraph {
+    font-family: $font-SF-Pro-Text;
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 22px;
+}
+
+@mixin paragraph-semi {
+    font-family: $font-SF-Pro-Text;
+    font-weight: 600;
+    font-size: 17px;
+    line-height: 22px;
+}
+
+@mixin paragraph-small {
+    font-family: $font-SF-Pro-Text;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 22px;
+}
+
+@mixin paragraph-extra-small {
+    font-family: $font-SF-Pro-Text;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14px;
+}
+
+@mixin title {
+    font-family: $font-SF-Pro-Text;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 24px;
+}
+
+@mixin cta {
+    font-family: $font-SF-Pro-Text;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 24px;
+}
+// Text end
+
+// Helpers
+@mixin mask($name) {
+    -webkit-mask: url("../images/#{$name}.svg") center / contain no-repeat;
+    mask: url("../images/#{$name}.svg") center / contain no-repeat;
+}
+
+@mixin stroke($color, $width: 1px) {
+    box-shadow: inset 0 0 0 $width $color;
+}
+// Helpers end
