@@ -10,6 +10,13 @@
     <!-- fonts -->
     <link rel="stylesheet" href="./assets/fonts/font.css">
     <!-- fonts -->
+    <!-- theme -->
+    <script>
+        try {
+            if (localStorage.getItem("theme") === "dark") document.documentElement.dataset.theme = "dark";
+        } catch (error) {}
+    </script>
+    <!-- theme -->
     <!-- css link -->
     <link rel="stylesheet" href="./assets/scss/style.css">
     <!-- css link -->
@@ -25,8 +32,8 @@
                     <h1 class="home__name">Safe DNS</h1>
                 </div>
                 <div class="home__center">
-                    <button type="button" class="power" aria-label="Включить защиту" aria-pressed="false"><span class="power__icon"></span></button>
-                    <p class="home__status">Неактивен</p>
+                    <button type="button" class="power" aria-label="Включить защиту" aria-pressed="false" data-power><span class="power__icon"></span></button>
+                    <p class="home__status" data-power-status>Неактивен</p>
                 </div>
             </section>
             <!-- Главная end -->
@@ -55,7 +62,7 @@
                     <span class="icon icon--chat-alt"></span>
                     <span>Поддержка</span>
                 </a>
-                <a href="#" class="tabbar__link">
+                <a href="./settings.html" class="tabbar__link">
                     <span class="icon icon--settings-tabbar"></span>
                     <span>Настройки</span>
                 </a>

@@ -10,6 +10,13 @@
     <!-- fonts -->
     <link rel="stylesheet" href="./assets/fonts/font.css">
     <!-- fonts -->
+    <!-- theme -->
+    <script>
+        try {
+            if (localStorage.getItem("theme") === "dark") document.documentElement.dataset.theme = "dark";
+        } catch (error) {}
+    </script>
+    <!-- theme -->
     <!-- css link -->
     <link rel="stylesheet" href="./assets/scss/style.css">
     <!-- css link -->
@@ -276,7 +283,7 @@
                                     <span class="icon icon--chat-alt"></span>
                                     <span>Поддержка</span>
                                 </a>
-                                <a href="#" class="tabbar__link">
+                                <a href="./settings.html" class="tabbar__link">
                                     <span class="icon icon--settings-tabbar"></span>
                                     <span>Настройки</span>
                                 </a>
@@ -298,7 +305,7 @@
                                     <span class="icon icon--chat-alt"></span>
                                     <span>Поддержка</span>
                                 </a>
-                                <a href="#" class="tabbar__link">
+                                <a href="./settings.html" class="tabbar__link">
                                     <span class="icon icon--settings-tabbar"></span>
                                     <span>Настройки</span>
                                 </a>
@@ -320,7 +327,7 @@
                                     <span class="icon icon--chat-alt"></span>
                                     <span>Поддержка</span>
                                 </a>
-                                <a href="#" class="tabbar__link">
+                                <a href="./settings.html" class="tabbar__link">
                                     <span class="icon icon--settings-tabbar"></span>
                                     <span>Настройки</span>
                                 </a>
@@ -342,7 +349,7 @@
                                     <span class="icon icon--chat-alt"></span>
                                     <span>Поддержка</span>
                                 </a>
-                                <a href="#" class="tabbar__link">
+                                <a href="./settings.html" class="tabbar__link">
                                     <span class="icon icon--settings-tabbar"></span>
                                     <span>Настройки</span>
                                 </a>
@@ -364,7 +371,7 @@
                                     <span class="icon icon--chat-alt"></span>
                                     <span>Поддержка</span>
                                 </a>
-                                <a href="#" class="tabbar__link is-active" aria-current="page">
+                                <a href="./settings.html" class="tabbar__link is-active" aria-current="page">
                                     <span class="icon icon--settings-tabbar"></span>
                                     <span>Настройки</span>
                                 </a>

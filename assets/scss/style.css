@@ -98,6 +98,28 @@ input[type=number]::-webkit-outer-spin-button {
   --color-apple-line: rgba(60, 60, 67, 0.36);
   color-scheme: light;
 }
+:root[data-theme=dark] {
+  --color-light-bg: #0f1115;
+  --color-black: #f5f7fa;
+  --color-main: #6acbc5;
+  --color-white: #20242c;
+  --color-divider: #2f3237;
+  --color-grey: #8b93a1;
+  --color-fade: rgba(96, 96, 96, 0.6);
+  --color-red: #ff8f92;
+  --color-chat-user-bg: #173331;
+  --color-chat-user-border: rgba(79, 141, 136, 0.6);
+  --color-reply-bg: #005d57;
+  --color-date-text: #f5f7fa;
+  --color-loader-bg: rgba(32, 36, 44, 0.8);
+  --color-apple-blue: #0a84ff;
+  --color-apple-fade: rgba(96, 96, 96, 0.6);
+  --color-apple-sheet: rgba(24, 24, 24, 0.7);
+  --color-apple-cancel: #1c1c1e;
+  --color-apple-label: rgba(235, 235, 245, 0.6);
+  --color-apple-line: rgba(84, 84, 88, 0.65);
+  color-scheme: dark;
+}
 
 body {
   font-family: "SF Pro Text", sans-serif;
@@ -1997,6 +2019,12 @@ body:has(.sheet.show) .offcanvas-backdrop {
 }
 .home__status {
   color: var(--color-grey);
+}
+
+.settings {
+  height: 100%;
+  padding: 14px;
+  overflow-y: auto;
 }
 
 .kit {

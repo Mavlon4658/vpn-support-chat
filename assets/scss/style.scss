@@ -5,18 +5,10 @@
     @include theme-light;
     color-scheme: light;
 
-    // Dark mode: keyinroq sozlamalardan yoqiladi
-    // @media (prefers-color-scheme: dark) {
-    //     &:not([data-theme="light"]) {
-    //         @include theme-dark;
-    //         color-scheme: dark;
-    //     }
-    // }
-    //
-    // &[data-theme="dark"] {
-    //     @include theme-dark;
-    //     color-scheme: dark;
-    // }
+    &[data-theme="dark"] {
+        @include theme-dark;
+        color-scheme: dark;
+    }
 }
 
 body {
@@ -1884,6 +1876,14 @@ body:has(.sheet.show) .offcanvas-backdrop {
     }
 }
 // Home end
+
+// Settings
+.settings {
+    height: 100%;
+    padding: 14px;
+    overflow-y: auto;
+}
+// Settings end
 
 // Components
 .kit {

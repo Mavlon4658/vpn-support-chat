@@ -67,11 +67,13 @@ document.querySelectorAll("[data-field-clear]").forEach((btn) => {
   });
 });
 
-// Btn-Activate: yoqish/o'chirish
+// Btn-Activate: yoqish/o'chirish (demo, backend yo'q)
 document.querySelectorAll("[data-power]").forEach((btn) => {
+  const status = btn.parentElement.querySelector("[data-power-status]");
   btn.addEventListener("click", () => {
     const isActive = btn.classList.toggle("is-active");
     btn.setAttribute("aria-pressed", isActive);
+    if (status) status.textContent = isActive ? "Активен" : "Неактивен";
   });
 });
 // Компоненты end
@@ -517,3 +519,32 @@ if (chat) {
   scrollDown("instant");
 }
 // Чат поддержки end
+
+// ===== Настройки =====
+
+// Tema: tanlov localStorage'da turadi, sahifa ochilishida head'dagi skript qo'yadi
+const themeToggle = document.querySelector("[data-theme-toggle]");
+if (themeToggle) {
+  themeToggle.addEventListener("change", () => {
+    const theme = themeToggle.checked ? "dark" : "light";
+    document.documentElement.dataset.theme = theme;
+    try {
+      localStorage.setItem("theme", theme);
+    } catch (error) {
+      // private rejimda xotira yopiq: tema faqat shu sahifada qoladi
+    }
+  });
+}
+
+// Boshqa tab yoki "orqaga" orqali qaytilgan sahifada tema yangilanadi
+const syncTheme = () => {
+  try {
+    document.documentElement.dataset.theme = localStorage.getItem("theme") === "dark" ? "dark" : "light";
+  } catch (error) {
+    return;
+  }
+  if (themeToggle) themeToggle.checked = document.documentElement.dataset.theme === "dark";
+};
+window.addEventListener("storage", syncTheme);
+window.addEventListener("pageshow", syncTheme);
+// Настройки end

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, interactive-widget=resizes-content">
+    <title>Настройки</title>
+    <!-- Bootstrap css -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css">
+    <!-- Bootstrap css -->
+    <!-- fonts -->
+    <link rel="stylesheet" href="./assets/fonts/font.css">
+    <!-- fonts -->
+    <!-- theme -->
+    <script>
+        try {
+            if (localStorage.getItem("theme") === "dark") document.documentElement.dataset.theme = "dark";
+        } catch (error) {}
+    </script>
+    <!-- theme -->
+    <!-- css link -->
+    <link rel="stylesheet" href="./assets/scss/style.css">
+    <!-- css link -->
+</head>
+<body>
+    <div class="wrapper screen" data-screen>
+
+        <!-- Header -->
+        <header class="title">
+            <div class="title__row">
+                <div class="title__box">
+                    <h1 class="title__text">Настройки</h1>
+                </div>
+            </div>
+        </header>
+        <!-- Header end -->
+
+        <main class="screen__body">
+            <!-- Настройки -->
+            <section class="settings">
+                <label class="item">
+                    <span class="item__row">
+                        <input type="checkbox" name="theme" class="item__input" role="switch" data-theme-toggle>
+                        <span class="item__name">Тёмная тема</span>
+                        <span class="switch"><span class="icon icon--close switch__icon"></span><span class="icon switch__icon switch__icon--on"></span></span>
+                    </span>
+                </label>
+            </section>
+            <!-- Настройки end -->
+        </main>
+
+        <!-- Footer -->
+        <footer class="tabbar">
+            <nav class="tabbar__list" aria-label="Основная навигация">
+                <a href="./index.html" class="tabbar__link">
+                    <span class="icon icon--home"></span>
+                    <span>Главная</span>
+                </a>
+                <a href="#" class="tabbar__link">
+                    <span class="icon icon--all"></span>
+                    <span>Приложения</span>
+                </a>
+                <a href="./chat.html#unread" class="tabbar__link is-unread">
+                    <span class="icon icon--chat-alt"></span>
+                    <span>Поддержка</span>
+                </a>
+                <a href="./settings.html" class="tabbar__link is-active" aria-current="page">
+                    <span class="icon icon--settings-tabbar"></span>
+                    <span>Настройки</span>
+                </a>
+            </nav>
+        </footer>
+        <!-- Footer end -->
+
+    </div>
+
+    <!-- js file -->
+    <script src="./assets/js/main.js" defer></script>
+    <!-- js file -->
+</body>
+</html>
