@@ -390,8 +390,95 @@ if (chat) {
     bootstrap.Modal.getOrCreateInstance(viewer).show();
   };
 
-  viewerImg.addEventListener("click", () => viewerImg.classList.toggle("is-zoom"));
-  viewer.addEventListener("hidden.bs.modal", () => viewerImg.classList.remove("is-zoom"));
+  // Zoom: bosish yoki ikki barmoq bilan kattalashadi, surish rasm chegarasida to'xtaydi
+  const viewerBox = viewer.querySelector(".viewer__box");
+  const ZOOM_TAP = 2.5;
+  const ZOOM_MAX = 4;
+  const zoom = { scale: 1, x: 0, y: 0 };
+  const pointers = new Map();
+  let gesture = null;
+
+  const getLimits = (scale) => {
+    const ratio = viewerImg.naturalWidth / viewerImg.naturalHeight || 1;
+    const width = Math.min(viewerImg.offsetWidth, viewerImg.offsetHeight * ratio);
+    const height = Math.min(viewerImg.offsetHeight, viewerImg.offsetWidth / ratio);
+    return {
+      x: Math.max(0, (width * scale - viewerBox.clientWidth) / 2),
+      y: Math.max(0, (height * scale - viewerBox.clientHeight) / 2),
+    };
+  };
+
+  const updateZoom = (scale, x, y) => {
+    const limits = getLimits(scale);
+    zoom.scale = scale;
+    zoom.x = Math.min(limits.x, Math.max(-limits.x, x));
+    zoom.y = Math.min(limits.y, Math.max(-limits.y, y));
+    viewerImg.style.setProperty("--scale", zoom.scale);
+    viewerImg.style.setProperty("--x", `${zoom.x}px`);
+    viewerImg.style.setProperty("--y", `${zoom.y}px`);
+    viewerImg.classList.toggle("is-zoom", zoom.scale > 1);
+  };
+
+  const getPoint = (event) => {
+    const rect = viewerBox.getBoundingClientRect();
+    return { x: event.clientX - rect.left - rect.width / 2, y: event.clientY - rect.top - rect.height / 2 };
+  };
+
+  const getCenter = () => {
+    const [a, b] = [...pointers.values()];
+    return { x: (a.x + b.x) / 2, y: (a.y + b.y) / 2, distance: Math.hypot(a.x - b.x, a.y - b.y) || 1 };
+  };
+
+  const startGesture = () => {
+    const point = pointers.size > 1 ? getCenter() : [...pointers.values()][0];
+    gesture = { ...zoom, point, isMoved: gesture ? gesture.isMoved : false };
+  };
+
+  viewerBox.addEventListener("pointerdown", (event) => {
+    if (event.target !== viewerImg) return;
+    pointers.set(event.pointerId, getPoint(event));
+    if (viewerBox.hasPointerCapture && event.isTrusted) viewerBox.setPointerCapture(event.pointerId);
+    viewerImg.classList.add("is-moving");
+    startGesture();
+  });
+
+  viewerBox.addEventListener("pointermove", (event) => {
+    if (!pointers.has(event.pointerId)) return;
+    pointers.set(event.pointerId, getPoint(event));
+    const start = gesture.point;
+    if (pointers.size > 1) {
+      const center = getCenter();
+      const scale = Math.min(ZOOM_MAX, Math.max(1, gesture.scale * center.distance / start.distance));
+      const factor = scale / gesture.scale;
+      updateZoom(scale, center.x - (start.x - gesture.x) * factor, center.y - (start.y - gesture.y) * factor);
+      gesture.isMoved = true;
+      return;
+    }
+    const point = pointers.get(event.pointerId);
+    if (Math.hypot(point.x - start.x, point.y - start.y) > 6) gesture.isMoved = true;
+    if (gesture.isMoved && zoom.scale > 1) updateZoom(zoom.scale, gesture.x + point.x - start.x, gesture.y + point.y - start.y);
+  });
+
+  const endPointer = (event) => {
+    if (!pointers.has(event.pointerId)) return;
+    const point = pointers.get(event.pointerId);
+    pointers.delete(event.pointerId);
+    if (pointers.size) {
+      startGesture();
+      return;
+    }
+    viewerImg.classList.remove("is-moving");
+    if (event.type === "pointerup" && !gesture.isMoved) {
+      if (zoom.scale > 1) updateZoom(1, 0, 0);
+      else updateZoom(ZOOM_TAP, -point.x * (ZOOM_TAP - 1), -point.y * (ZOOM_TAP - 1));
+    }
+    gesture = null;
+  };
+
+  viewerBox.addEventListener("pointerup", endPointer);
+  viewerBox.addEventListener("pointercancel", endPointer);
+  window.addEventListener("resize", () => updateZoom(zoom.scale, zoom.x, zoom.y), { passive: true });
+  viewer.addEventListener("hidden.bs.modal", () => updateZoom(1, 0, 0));
   viewer.querySelector("[data-viewer-remove]").addEventListener("click", () => {
     bootstrap.Modal.getInstance(viewer).hide();
     if (viewerTarget) removeItem(viewerTarget);

@@ -1964,17 +1964,23 @@ body:has(.sheet.show) .offcanvas-backdrop {
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  touch-action: none;
 }
 .viewer__img {
   width: 100%;
   max-height: 100%;
   object-fit: contain;
   cursor: zoom-in;
+  transform: translate(var(--x, 0px), var(--y, 0px)) scale(var(--scale, 1));
   transition: transform 0.2s ease-out;
+  user-select: none;
+  -webkit-user-drag: none;
 }
 .viewer__img.is-zoom {
-  transform: scale(3.5);
-  cursor: zoom-out;
+  cursor: grab;
+}
+.viewer__img.is-moving {
+  transition: none;
 }
 .viewer.modal.fade .modal-dialog {
   transform: translateY(100%);
